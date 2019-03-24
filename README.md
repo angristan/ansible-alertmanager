@@ -48,7 +48,7 @@ If the `/usr/local/bin/alertmanager` binary already exists, the role will skip t
 ---
 
 - hosts: myhost
-  roles: prometheus
+  roles: alertmanager
   vars:
     alertmanager_web_listen_address: '127.0.0.1:9093'
     alertmanager_web_external_url: 'https://alertmanager.domain.tld/'

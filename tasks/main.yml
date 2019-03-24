@@ -1,0 +1,22 @@
+---
+
+- name: Check if alertmanager is installed
+  stat:
+    path: "/usr/local/bin/alertmanager"
+  register: alertmanager_binary
+
+- include: install.yml
+  when: not alertmanager_binary.stat.exists or alertmanager_force_install
+  tags:
+    - alertmanager.install
+
+- include: configure.yml
+  tags:
+    - alertmanager.configure
+
+- name: Ensure alertmanager service is started and enabled
+  systemd:
+    daemon_reload: true
+    name: alertmanager
+    state: started
+    enabled: true

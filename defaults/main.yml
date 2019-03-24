@@ -1,0 +1,33 @@
+---
+
+alertmanager_version: 0.16.1
+alertmanager_force_install: false
+
+alertmanager_config_dir: /etc/alertmanager
+alertmanager_data_dir: /var/lib/alertmanager
+
+alertmanager_config_file: 'alertmanager.yml.j2'
+
+alertmanager_web_listen_address: '0.0.0.0:9093'
+alertmanager_web_external_url: 'http://localhost:9093/'
+
+alertmanager_resolve_timeout: 3m
+
+alertmanager_config_flags_extra: {}
+
+alertmanager_smtp: {}
+
+alertmanager_slack_api_url: ''
+alertmanager_pagerduty_url: ''
+alertmanager_opsgenie_api_key: ''
+alertmanager_opsgenie_api_url: ''
+alertmanager_hipchat_api_url: ''
+alertmanager_hipchat_auth_token: ''
+alertmanager_wechat_url: ''
+alertmanager_wechat_secret: ''
+alertmanager_wechat_corp_id: ''
+
+alertmanager_receivers: []
+alertmanager_inhibit_rules: []
+alertmanager_route: {}
+alertmanager_child_routes: []

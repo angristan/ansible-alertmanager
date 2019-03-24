@@ -1,0 +1,33 @@
+---
+
+- name: Fail when there are no receivers defined
+  fail:
+    msg: "Configure alert receivers (`alertmanager_receivers`). Otherwise alertmanager won't know where to send alerts."
+  when: alertmanager_receivers == []
+
+- name: Fail when there is no alert route defined
+  fail:
+    msg: "Configure alert routing (`alertmanager_route`). Otherwise alertmanager won't know how to send alerts."
+  when: alertmanager_route == {}
+
+- name: Copy alertmanager.yml
+  template:
+    force: true
+    src: "{{ alertmanager_config_file }}"
+    dest: "{{ alertmanager_config_dir }}/alertmanager.yml"
+    owner: alertmanager
+    group: alertmanager
+    mode: 0644
+    validate: "/usr/local/bin/amtool --alertmanager.url=  check-config %s"
+  notify:
+    - restart alertmanager
+
+- name: Create systemd service unit
+  template:
+    src: alertmanager.service.j2
+    dest: /etc/systemd/system/alertmanager.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart alertmanager

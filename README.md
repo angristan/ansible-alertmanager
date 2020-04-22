@@ -1,7 +1,5 @@
 # Ansible role for Alertmanager
 
-[![CircleCI](https://circleci.com/gh/angristan/ansible-alertmanager.svg?style=svg)](https://circleci.com/gh/angristan/ansible-alertmanager)
-
 This role will setup [Alertmanager](https://github.com/prometheus/alertmanager) on any Linux machine using systemd.
 
 ## Requirements
